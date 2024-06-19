@@ -317,15 +317,17 @@ WHERE (salary*12) >= 40000000 AND bonus IS NULL;
 -- (정렬은 먼저 입사한 기준)
 SELECT emp_id, emp_name, hire_date, dept_code
 FROM employee
-WHERE hire_date >= '1995-01-01' AND dept_code IS NOT NULL;
+WHERE hire_date >= '1995-01-01' AND dept_code IS NOT NULL
+ORDER BY hire_date;
 -- 5. 급여가 200만원 이상 500만원 이하이고 입사일이 '2001-01-01' 이상이고
 -- 보너스를 받지 않은 사원들의 사번, 사원명, 급여, 입사일, 보너스 조회
 SELECT emp_id, emp_name, salary, hire_date, bonus
 FROM employee
 WHERE (salary BETWEEN 2000000 AND 5000000) AND hire_date >= '2001-01-01' AND bonus IS NULL;
 -- 6. 보너스 포함 연봉이 NULL이 아니고 이름에 '하'가 포함되어 있는 사원들의 사번, 사원명, 급여,
--- 보너스 포함 연봉(별칭부여) 조회
+-- 보너스 포함 연봉(별칭부여) 조회 (연봉이 높은 순으로 정렬)
 -- 보너스 포함 연봉 : (salary + salary * bonus) * 12
-SELECT emp_id, emp_name, salary, (salary + salary * bonus) * 12 "true_money"
+SELECT emp_id, emp_name, salary, (salary + salary * bonus) * 12 "연봉"
 FROM employee
-WHERE (salary + salary * bonus) * 12 IS NOT NULL AND emp_name LIKE '%하%';
+WHERE (salary + salary * bonus) * 12 IS NOT NULL AND emp_name LIKE '%하%'
+ORDER BY 연봉 DESC;
