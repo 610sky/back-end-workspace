@@ -90,7 +90,7 @@ public class OperatorPractice {
 		System.out.print("바구니의 크기 >");
 		int box_size = sc.nextInt();
 		
-		int result = (apple / box_size) + 1;
+		int result = (apple / box_size + (apple % box_size == 0 ? 0 : 1));
 		
 		System.out.println("필요한 바구니의 수 : " + result);
 	}
