@@ -1,5 +1,6 @@
 package com.kh.practice;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class ConditionPractice {
@@ -10,13 +11,13 @@ public class ConditionPractice {
 //		cp.method2();
 //		cp.method3();
 //		cp.method4();
-//		cp.method5();
+		cp.method5();
 //		cp.method6();
 //		cp.method7();
 //		cp.method8();
 //		cp.method9();
 //		cp.method10();
-		cp.method11();
+//		cp.method11();
 	}
 
     /*
@@ -71,23 +72,36 @@ public class ConditionPractice {
 
      */
     public void method3() {
-    	System.out.print("피자 조각 수 : ");
-    	int pieces = sc.nextInt();
-    	System.out.print("피자 먹는 사람 수 : ");
-    	int people = sc.nextInt();
-    	int tmp = pieces;
-    	int i=2;
-    	int pizza = pieces >= 10 ? (pieces / 10) + 1 : 1;
+//    	System.out.print("피자 조각 수 : ");
+//    	int pieces = sc.nextInt();
+//    	System.out.print("피자 먹는 사람 수 : ");
+//    	int people = sc.nextInt();
+//    	int tmp = pieces;
+//    	int i=2;
+//    	
+//    	if(pieces / people != 0) {
+//    		System.out.println(pieces / people);
+//    	}
+//    	else {
+//    		for(i = 2; pieces / people == 0; i++) {
+//    			pieces = tmp * i;
+//    		}
+//    		System.out.println(i-1);
+//    	}
     	
-    	if(pieces / people != 0) {
-    		System.out.println(pieces / people);
+    	// 정답
+    	System.out.print("피자 조각 수 : ");
+    	int pizza = sc.nextInt();
+    	System.out.print("피자 먹는 사람 수 : ");
+    	int person = sc.nextInt();
+    	
+    	int result = person / pizza;
+    	
+    	if(person % pizza != 0) {
+    		result++;
     	}
-    	else {
-    		for(i = 2; pieces / people == 0; i++) {
-    			pieces = tmp * i;
-    		}
-    		System.out.println(i-1);
-    	}
+    	
+    	System.out.println(result);
     }
 
     /*
@@ -118,10 +132,11 @@ public class ConditionPractice {
     	int sum = lang_score + math_score + eng_score;
     	float avg = (float)sum / 3;
     	
-    	if((lang_score > 40 && math_score > 40) && (eng_score > 40 && avg > 60)) {
+    	if(lang_score >= 40 && math_score >= 40 && eng_score >= 40 && avg >= 60) {
     		System.out.println("합계 : " + sum);
     		System.out.printf("평균 : %.2f", avg);
     		System.out.println();
+//    		System.out.println("평균 : " + String.format("%.1f", avg));
     		System.out.println("축하합니다, 합격입니다!");
     	}
     	else
@@ -139,14 +154,17 @@ public class ConditionPractice {
     	System.out.print("구매한 옷 가격 : ");
     	int price = sc.nextInt();
     	
-    	if(price > 500000)
+    	if(price >= 500000)
     		System.out.println((int)(price*0.8));
-    	else if(price > 300000)
+    	else if(price >= 300000)
     		System.out.println((int)(price*0.9));
-    	else if(price > 100000)
+    	else if(price >= 100000)
     		System.out.println((int)(price*0.95));
     	else
     		System.out.println(price);
+    	
+    	DecimalFormat df = new DecimalFormat("###,###");
+    	System.out.println(df.format(price));
     }
 
 
@@ -296,6 +314,9 @@ public class ConditionPractice {
     		default:
     			System.out.println("잘못 입력하셨습니다. 프로그램을 종료합니다.");
     			break;
+//       		default:
+//   			System.out.println();
+//   			return;  => 프로그램 종료시킴
     		}
     	}
     	else
@@ -339,6 +360,7 @@ public class ConditionPractice {
     		System.out.println("프로그램이 종료됩니다.");
     		break;
     	}
+    	
     }
 
     /*
@@ -416,7 +438,7 @@ public class ConditionPractice {
     			}
     		}
     		else if(total_score < 70) {
-    			System.out.printf("FAIL [점수 미달] (총점 %.2f)", total_score);
+    			System.out.printf("FAIL [점수 미달] (총점 %.1f)", total_score);
     		}
     	}
     }
