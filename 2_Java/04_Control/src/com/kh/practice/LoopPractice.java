@@ -37,11 +37,29 @@ class LoopPractice {
     	double sum=0;
     	double i=1;
     	double j=-2;
-    	while(sum < 100) {
-    		sum = i + j;
-    		i +=2;
-    		j *=2;
-    		System.out.println("sum = " + i + " " + j);
+    	
+    	int sum2 = 0;
+    	int num = 1;
+    	
+//    	while(sum < 100) {
+//    		sum = i + j;
+//    		i +=2;
+//    		j *=2;
+//    		System.out.println("sum = " + i + " " + j);
+//    	}
+    	
+    	while(true) {
+    		if(num % 2 == 0) {
+    			sum2 -= num;
+    		}
+    		else {
+    			sum2 += num;
+    		}
+    		
+    		if(sum >= 100)
+    			break;
+    		
+    		num++;
     	}
     }
 
@@ -59,8 +77,13 @@ class LoopPractice {
     	System.out.print("문자 : ");
     	char ch = sc.nextLine().charAt(0);
     	int count = 0;
-    	for(int i=0;i<str.length();i++) {
-    		if(ch == str.charAt(i)) {
+//    	for(int i=0;i<str.length();i++) {
+//    		if(ch == str.charAt(i)) {
+//    			count++;
+//    		}
+//    	}
+    	for(char value : str.toCharArray()) {
+    		if(value == ch) {
     			count++;
     		}
     	}
@@ -105,36 +128,47 @@ class LoopPractice {
     	int count_5=0;
     	int count_6=0;
     	
-    	for(int i=0;i<10;i++) {
-    		int random = (int)(Math.random()*6+1);
-    		switch(random) {
-    		case 1:
-    			count_1++;
-    			break;
-    		case 2:
-    			count_2++;
-    			break;
-    		case 3:
-    			count_3++;
-    			break;
-    		case 4:
-    			count_4++;
-    			break;
-    		case 5:
-    			count_5++;
-    			break;
-    		case 6:
-    			count_6++;
-    			break;
+    	int[] dice = new int[6];
+    	
+    	for(int i = 0; i < 10; i++) {
+    		int random = (int)(Math.random()*6);
+    		dice[random]++;
     		}
+    	
+    	for(int i = 0; i < dice.length; i++) {
+    		System.out.printf("%d : %d\n", dice[i]+1, dice[i]);
     	}
-    	System.out.printf("1 : %d\n", count_1);
-    	System.out.printf("2 : %d\n", count_2);
-    	System.out.printf("3 : %d\n", count_3);
-    	System.out.printf("4 : %d\n", count_4);
-    	System.out.printf("5 : %d\n", count_5);
-    	System.out.printf("6 : %d\n", count_6);
     }
+//    	for(int i=0;i<10;i++) {
+//    		int random = (int)(Math.random()*6+1);
+//    		switch(random) {
+//    		case 1:
+//    			count_1++;
+//    			break;
+//    		case 2:
+//    			count_2++;
+//    			break;
+//    		case 3:
+//    			count_3++;
+//    			break;
+//    		case 4:
+//    			count_4++;
+//    			break;
+//    		case 5:
+//    			count_5++;
+//    			break;
+//    		case 6:
+//    			count_6++;
+//    			break;
+//    		}
+//    	}
+//    	System.out.printf("1 : %d\n", count_1);
+//    	System.out.printf("2 : %d\n", count_2);
+//    	System.out.printf("3 : %d\n", count_3);
+//    	System.out.printf("4 : %d\n", count_4);
+//    	System.out.printf("5 : %d\n", count_5);
+//    	System.out.printf("6 : %d\n", count_6);
+//    }
 
     /*
         사용자의 이름을 입력하고 컴퓨터와 가위바위보를 하세요. 
@@ -168,87 +202,113 @@ class LoopPractice {
     	
 //    	0 : 가위, 1 : 바위, 2 : 보
     	while(true) {
+    		String[] rps = {"가위", "바위", "보"};
+    		
     		System.out.print("가위바위보 : ");
     		String select = sc.nextLine();
     		int random = (int)(Math.random()*3);
-    		if(select.equals("가위")) {
-    			if(random == 0) {
-    				System.out.println("컴퓨터 : 가위");
-    				System.out.printf("%s : %s\n", name, select);
-    				System.out.println("비겼습니다.");
-    				System.out.println();
-    				draw++;
-    				continue;
-    			}
-    			else if(random == 1) {
-    				System.out.println("컴퓨터 : 바위");
-    				System.out.printf("%s : %s\n", name, select);
-    				System.out.println("졌습니다 ㅠㅠ");
-    				System.out.println();
-    				lose++;
-    				continue;
-    			}
-    			else if(random == 2) {
-    				System.out.println("컴퓨터 : 보");
-    				System.out.printf("%s : %s\n", name, select);
-    				System.out.println("이겼습니다 !");
-    				win++;
-    				System.out.printf("비긴 횟수 : %d, 진 횟수 : %d, 이긴 횟수 : %d", draw, lose, win);
-    				break;
-    			}
+    		
+    		System.out.println("컴퓨터 : " + rps[random]);
+    		System.out.println(name + " : " + select);
+    		
+    		// 배열에서 값으로 인덱스 찾기 -> 사용자가 입력한 값을 숫자로!
+    		int number = Arrays.asList(rps).indexOf(select);
+    		
+    		if(random == number) {
+    			// 비겼을 경우
+    			System.out.println("비겼습니다.");
+    			draw++;
+    		} else if((number==0&&random==2)||(number==1&&random==0)
+    				||(number==2&&random==1)) {
+    			// 이겼을 경우
+    			System.out.println("이겼습니다!");
+    			win++;
+    			break;
+    		} else {
+    			// 졌을경우
+    			System.out.println("졌습니다ㅠㅠ");
+    			lose++;
     		}
-    		else if(select.equals("바위")) {
-    			if(random == 0) {
-    				System.out.println("컴퓨터 : 가위");
-    				System.out.printf("%s : %s\n", name, select);
-    				System.out.println("이겼습니다 !");
-    				win++;
-    				System.out.printf("비긴 횟수 : %d, 진 횟수 : %d, 이긴 횟수 : %d", draw, lose, win);
-    				break;
-    			}
-    			else if(random == 1) {
-    				System.out.println("컴퓨터 : 바위");
-    				System.out.printf("%s : %s\n", name, select);
-    				System.out.println("비겼습니다.");
-    				System.out.println();
-    				draw++;
-    				continue;
-    			}
-    			else if(random == 2) {
-    				System.out.println("컴퓨터 : 보");
-    				System.out.printf("%s : %s\n", name, select);
-    				System.out.println("졌습니다 ㅠㅠ");
-    				System.out.println();
-    				lose++;
-    				continue;
-    			}
-    		}
-    		else if(select.equals("보")) {
-    			if(random == 0) {
-    				System.out.println("컴퓨터 : 가위");
-    				System.out.printf("%s : %s\n", name, select);
-    				System.out.println("졌습니다 ㅠㅠ");
-    				System.out.println();
-    				lose++;
-    				continue;
-    			}
-    			else if(random == 1) {
-    				System.out.println("컴퓨터 : 바위");
-    				System.out.printf("%s : %s\n", name, select);
-    				System.out.println("이겼습니다 !");
-    				win++;
-    				System.out.printf("비긴 횟수 : %d, 진 횟수 : %d, 이긴 횟수 : %d", draw, lose, win);
-    				break;
-    			}
-    			else if(random == 2) {
-    				System.out.println("컴퓨터 : 보");
-    				System.out.printf("%s : %s\n", name, select);
-    				System.out.println("비겼습니다.");
-    				System.out.println();
-    				draw++;
-    				continue;
-    			}
-    		}
+    		
+    		System.out.printf("비긴 횟수 : %d, 진 횟수 : %d, 이긴 횟수 : %d", draw, lose, win);
+//    		if(select.equals("가위")) {
+//    			if(random == 0) {
+//    				System.out.println("컴퓨터 : 가위");
+//    				System.out.printf("%s : %s\n", name, select);
+//    				System.out.println("비겼습니다.");
+//    				System.out.println();
+//    				draw++;
+//    				continue;
+//    			}
+//    			else if(random == 1) {
+//    				System.out.println("컴퓨터 : 바위");
+//    				System.out.printf("%s : %s\n", name, select);
+//    				System.out.println("졌습니다 ㅠㅠ");
+//    				System.out.println();
+//    				lose++;
+//    				continue;
+//    			}
+//    			else if(random == 2) {
+//    				System.out.println("컴퓨터 : 보");
+//    				System.out.printf("%s : %s\n", name, select);
+//    				System.out.println("이겼습니다 !");
+//    				win++;
+//    				System.out.printf("비긴 횟수 : %d, 진 횟수 : %d, 이긴 횟수 : %d", draw, lose, win);
+//    				break;
+//    			}
+//    		}
+//    		else if(select.equals("바위")) {
+//    			if(random == 0) {
+//    				System.out.println("컴퓨터 : 가위");
+//    				System.out.printf("%s : %s\n", name, select);
+//    				System.out.println("이겼습니다 !");
+//    				win++;
+//    				System.out.printf("비긴 횟수 : %d, 진 횟수 : %d, 이긴 횟수 : %d", draw, lose, win);
+//    				break;
+//    			}
+//    			else if(random == 1) {
+//    				System.out.println("컴퓨터 : 바위");
+//    				System.out.printf("%s : %s\n", name, select);
+//    				System.out.println("비겼습니다.");
+//    				System.out.println();
+//    				draw++;
+//    				continue;
+//    			}
+//    			else if(random == 2) {
+//    				System.out.println("컴퓨터 : 보");
+//    				System.out.printf("%s : %s\n", name, select);
+//    				System.out.println("졌습니다 ㅠㅠ");
+//    				System.out.println();
+//    				lose++;
+//    				continue;
+//    			}
+//    		}
+//    		else if(select.equals("보")) {
+//    			if(random == 0) {
+//    				System.out.println("컴퓨터 : 가위");
+//    				System.out.printf("%s : %s\n", name, select);
+//    				System.out.println("졌습니다 ㅠㅠ");
+//    				System.out.println();
+//    				lose++;
+//    				continue;
+//    			}
+//    			else if(random == 1) {
+//    				System.out.println("컴퓨터 : 바위");
+//    				System.out.printf("%s : %s\n", name, select);
+//    				System.out.println("이겼습니다 !");
+//    				win++;
+//    				System.out.printf("비긴 횟수 : %d, 진 횟수 : %d, 이긴 횟수 : %d", draw, lose, win);
+//    				break;
+//    			}
+//    			else if(random == 2) {
+//    				System.out.println("컴퓨터 : 보");
+//    				System.out.printf("%s : %s\n", name, select);
+//    				System.out.println("비겼습니다.");
+//    				System.out.println();
+//    				draw++;
+//    				continue;
+//    			}
+//    		}
     	}
     }
 }
