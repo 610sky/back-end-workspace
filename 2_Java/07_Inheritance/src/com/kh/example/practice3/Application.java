@@ -9,9 +9,11 @@ public class Application {
 	Scanner sc = new Scanner(System.in);
 	Employee viewEmployee = new Employee();
 	EmployeeController employeeController = new EmployeeController();
+	
 	public static void main(String[] args) {
 		Application app = new Application();
-		while(true) {
+		boolean check = true;
+		while(check) {
 			int select = app.employeeMenu();
 			switch(select) {
 			case 1:
@@ -23,10 +25,12 @@ public class Application {
 			case 3:
 				app.printEmp();
 				break;
-			}
-			if(select == 9) {
+			case 9:
 				System.out.println("프로그램을 종료합니다.");
+				check = false;
 				break;
+			default:
+				System.out.println("잘못 입력하셨습니다. 다시 입력해주세요~");
 			}
 		}
 	}
@@ -41,6 +45,7 @@ public class Application {
 	public void insertEmp() {
 		System.out.print("사원 번호 : ");
 		int empNo = Integer.parseInt(sc.nextLine());
+//		viewEmployee.setEmpNo(Integer.parseInt(sc.nextLine()));
 		System.out.print("사원 이름 : ");
 		String name = sc.nextLine();
 		System.out.print("사원 성별 : ");

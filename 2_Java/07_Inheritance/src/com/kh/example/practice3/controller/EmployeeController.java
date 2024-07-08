@@ -3,8 +3,9 @@ package com.kh.example.practice3.controller;
 import com.kh.example.practice3.model.Employee;
 
 public class EmployeeController {
-	Employee employee = new Employee();
+	private Employee employee = new Employee();
 	
+	// 오버로딩!!
 	public void add(int empNo, String name, char gender, String phone) {
 		employee.setEmpNo(empNo);
 		employee.setName(name);
