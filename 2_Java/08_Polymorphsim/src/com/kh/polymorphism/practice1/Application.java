@@ -34,7 +34,11 @@ public class Application {
 				bc.memberInfo();
 				break;
 			case 2:
-				borBook();
+				if(bc.getCount() > 1) {
+					System.out.println("더 이상 대여할 수 없습니다.");
+				}
+				else	
+					borBook();
 				break;
 			case 3:
 				check=false;

@@ -18,23 +18,23 @@ public class BookController {
 		m.setAge(age);
 	}
 	public void setBookList(int number) {
-		m.getBookList()[count].setTitle(book[number].getTitle());
-		m.getBookList()[count].setCoupon(book[number].isCoupon());
-		m.getBookList()[count].setAccessAge(book[number].getAccessAge());
+			m.getBookList()[count] = book[number-1];
+			count++;
+			if(book[number-1].isCoupon()) {
+				m.setCoupon(m.getCoupon()+1);
+			}
 	}
-	
-	
 	public boolean checkAge(int number) {
-		if(m.getAge() < book[number].getAccessAge()) {
+		if(m.getAge() < book[number-1].getAccessAge()) {
 			return true;
 		}
 		return false;
 	}
 	public boolean checkBook(int number) {
-		for(Book b : m.getBookList()) {
-			if(b.getTitle().equals(book[number].getTitle())) {
-				return true;
-			}
+			for(int i=0; i<m.getBookList().length; i++) {
+				if(m.getBookList()[i] != null)
+					if(book[number].getTitle().equals(m.getBookList()[i].getTitle()))
+						return true;
 		}
 		return false;
 	}
@@ -46,5 +46,8 @@ public class BookController {
 		for(int i = 0; i < book.length; i++) {
 			System.out.println(i+1 + "번 도서 : " + book[i]);
 		}
+	}
+	public int getCount() {
+		return this.count;
 	}
 }
