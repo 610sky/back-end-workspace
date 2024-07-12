@@ -12,6 +12,7 @@ import com.kh.example.practice2.model.Music;
 public class MusicListController {
 	private Music m = new Music();
 	private List<Music> musicList = new ArrayList<>();
+	private List<Music> tmp = new ArrayList<>();
 	
 	public Music getM() {
 		return m;
@@ -25,9 +26,11 @@ public class MusicListController {
 	
 	public void addLast(Music m) {
 		musicList.add(m);
+		tmp.add(m);
 	}
 	public void addFirst(Music m) {
 		musicList.add(0,m);
+		tmp.add(0,m);
 	}
 	
 	public void search(String title) {
@@ -62,11 +65,13 @@ public class MusicListController {
 	public void remove(String title) {
 		int count = 0;
 		for(Music m : musicList) {
-			if(m.getTitle().contains(title)) {
+			if(m.getTitle().equals(title)) {
 				System.out.printf("%s - %s 을 삭제 했습니다.\n",m.getName(),m.getTitle());
 				
 				musicList.remove(m);
+				tmp.remove(m);
 				count++;
+				break;
 			}
 		}
 		if(count==0) {
@@ -78,6 +83,44 @@ public class MusicListController {
 		System.out.println("****** 전체 곡 목록 출력 ******");
 		for(Music m : musicList) {
 			System.out.println(m.getName() + " - " + m.getTitle());
+		}
+	}
+	
+	public void infoNameSort() {
+		System.out.println("****** 가수 명 내림차순 정렬 ******");
+		for(Music m : tmp) {
+			System.out.println(m.getName() + " - " + m.getTitle());
+		}
+	}
+	
+	public void infoTitleSort() {
+		System.out.println("****** 곡 명 오름차순 정렬 ******");
+		for(Music m : tmp) {
+			System.out.println(m.getName() + " - " + m.getTitle());
+		}
+	}
+	
+	public void nameSort() {
+		Collections.sort(tmp, new MusicNameComparator());
+		infoNameSort();
+	}
+	
+	public void titleSort() {
+		Collections.sort(tmp, new MusicTitleComparator());
+		infoTitleSort();
+	}
+	
+	class MusicNameComparator implements Comparator<Music>{
+		@Override
+		public int compare(Music o1, Music o2) {
+			return o2.getName().compareTo(o1.getName());
+		}
+	}
+	
+	class MusicTitleComparator implements Comparator<Music>{
+		@Override
+		public int compare(Music o1, Music o2) {
+			return o1.getTitle().compareTo(o2.getTitle());
 		}
 	}
 }

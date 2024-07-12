@@ -1,6 +1,7 @@
 package com.kh.example.practice2;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.kh.example.practice2.controller.MusicListController;
@@ -55,16 +56,17 @@ public class Application {
 					updateMusic();
 					break;
 				case 7:
+					mlc.nameSort();
 					break;
 				case 8:
-					check = false;
+					mlc.titleSort();
 					break;
 				case 9:
 					check = false;
 					System.out.println("종료");
 					break;
 				}
-			} catch(Exception e) {
+			} catch(NumberFormatException e) {
 				System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 			}
 		}
