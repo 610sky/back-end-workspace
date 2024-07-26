@@ -8,10 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="header.jsp" />
-	<form action="choose5.view.jsp">
-		숫자 : <input type="text" name="number"><br>
-		<input type="submit" value="전송">
-	</form>
+
+	<h1>회원 검색 결과</h1>
+	<ul>
+		<li>아이디 : ${member.getId()}</li>
+		<li>비밀번호 : ${member.getPassword()}</li>
+		<li>이름 : ${member.getName()}</li>
+	</ul>
+	<a href="/">메인 페이지로 이동</a>
 </body>
 </html>

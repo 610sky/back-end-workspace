@@ -9,9 +9,8 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<form action="choose5.view.jsp">
-		숫자 : <input type="text" name="number"><br>
-		<input type="submit" value="전송">
-	</form>
+	<c:forEach var="i" begin="1" end="6" step="1">
+		<h${i}>JSTL..!!</h${i}>
+	</c:forEach>
 </body>
 </html>
