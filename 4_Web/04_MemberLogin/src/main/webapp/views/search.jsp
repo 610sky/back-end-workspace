@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>회원가입 실패 ㅠㅠ</h1>
+	<h2>회원 검색</h2>
+	<form action="/search">
+		검색할 회원 아이디를 입력해주세요<br>
+		<input type="text" name="id">
+		<input type="submit" value="검색">
+	</form>
 </body>
-</html>+
+</html>

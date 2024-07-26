@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>회원가입 실패 ㅠㅠ</h1>
+	<form action="if4_view.jsp">
+		숫자 : <input type="text" name="number"><br>
+		<input type="submit" value="전송">
+	</form>
 </body>
-</html>+
+</html>

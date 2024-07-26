@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>회원가입 실패 ㅠㅠ</h1>
+	<%
+		request.setAttribute("result", "request");
+		session.setAttribute("result2", "session");
+		request.getRequestDispatcher("el1_view.jsp").forward(request,response);
+	%>
 </body>
-</html>+
+</html>
