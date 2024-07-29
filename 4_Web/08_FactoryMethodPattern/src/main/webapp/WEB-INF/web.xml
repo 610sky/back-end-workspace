@@ -10,7 +10,7 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet</url-pattern>
   </servlet-mapping>
-  <display-name>07_FrontControllerPattern</display-name>
+  <display-name>08_FactoryMethodPattern</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
