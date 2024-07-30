@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.kh.model.DAO.MemberDAO;
+import com.kh.model.dao.MemberDAO;
 import com.kh.model.vo.Member;
 import com.kh.service.MemberService;
 
@@ -21,6 +21,11 @@ import jakarta.servlet.http.HttpSession;
 public class MemberController {
 	@Autowired
 	private MemberService service;
+	
+	@GetMapping("/")
+	public String index() {
+		return "index";
+	}
 	
 	@GetMapping("register")
 //	아래 함수가 생략된 형태
