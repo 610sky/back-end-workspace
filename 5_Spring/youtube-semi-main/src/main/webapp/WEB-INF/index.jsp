@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,8 +11,14 @@
       rel="icon"
       href="https://www.youtube.com/s/desktop/ae4ecf92/img/favicon_144x144.png"
     />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="${pageContext.request.contextPath}/css/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="${pageContext.request.contextPath}/css/style.css"
+    />
     <script
       src="https://kit.fontawesome.com/ef885bd654.js"
       crossorigin="anonymous"
@@ -114,25 +120,24 @@
           <a href="">야생생물</a>
         </nav>
         <section>
-        	<c:forEach items="${list}" var="video">
-        		<div class="video-card">
-        			<div class="video-main">
-		       			<img src="${video.videoImg}" />
-		       			<video src="${video.videoUrl}" controls></video>
-        			</div>
-        			<div class="video-info">
-        				<img src="${video.channel.channelImg}" />
-        				<div class="video-desc">
-        					<h2>${video.videoTitle}</h2>
-        					<p>${video.channel.channelName}</p>
-        					<p>조회수 ${video.videoCount}ㆍ${video.videoDate}</p>
-        				</div>
-        			</div>
-        		</div>
-        	</c:forEach>
+          <c:forEach items="${list}" var="video">
+            <div class="video-card" data-code="${video.videoCode}">
+              <div class="video-main">
+                <img src="${video.videoImg}" />
+                <video src="${video.videoUrl}" controls></video>
+              </div>
+              <div class="video-info">
+                <img src="${video.channel.channelImg}" />
+                <div class="video-desc">
+                  <h2>${video.videoTitle}</h2>
+                  <p>${video.channel.channelName}</p>
+                  <p>조회수 ${video.videoCount}ㆍ${video.videoDate}</p>
+                </div>
+              </div>
+            </div>
+          </c:forEach>
         </section>
       </div>
     </main>
   </body>
 </html>
-    
