@@ -1,9 +1,7 @@
 package com.semi.youtube.controller;
 
-import org.springframework.stereotype.Controller;
+public class VideoController {
 
-@Controller
-public class VideoController extends MemberController {
 	// 비디오 전체 목록 보기
 	
 	// 비디오 1개 보여주기
