@@ -1,6 +1,6 @@
 package com.semi.youtube.model.vo;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Comment {
 	private int commentCode;
 	private String commentText;
-	private Date commentDate;
+	private LocalDateTime commentDate;
 	private String id; //member
 	private int videoCode; //video
 	private int parentCode;
