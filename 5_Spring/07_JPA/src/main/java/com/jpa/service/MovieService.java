@@ -14,7 +14,7 @@ public class MovieService {
 	private MovieDAO dao;
 	
 	public void change(Movie vo) {
-		dao.save(vo);
+		dao.save(vo); // id가 없으면 추가/ 있으면 수정
 	}
 	
 	public List<Movie> viewAll() {
@@ -22,6 +22,10 @@ public class MovieService {
 	}
 	
 	public Movie view(int id) {
-		return dao.findById(id).get();
+		return dao.findById(id).orElse(null);
+	}
+	
+	public void delete(int id) {
+		dao.deleteById(id);
 	}
 }
